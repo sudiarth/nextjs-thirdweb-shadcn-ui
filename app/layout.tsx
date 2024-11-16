@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/providers/theme";
 import { ThirdwebProvider } from "thirdweb/react";
 
+import { Analytics } from '@vercel/analytics/next';
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -55,7 +57,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ThirdwebProvider>{children}</ThirdwebProvider>
+          <ThirdwebProvider>
+            {children}
+            <Analytics />
+          </ThirdwebProvider>
         </ThemeProvider>
       </body>
     </html>
